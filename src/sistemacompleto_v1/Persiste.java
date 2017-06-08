@@ -7,25 +7,31 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class Persiste {
-    public static void save(String caminho, Object obj){
-        try{
+public class Persiste
+  {
+
+    public static void save(String caminho, Object obj)
+      {
+        try
+          {
             FileOutputStream out = new FileOutputStream(caminho);
             ObjectOutputStream s = new ObjectOutputStream(out);
 
             s.writeObject(obj);
             s.close();
-        }
-        catch(FileNotFoundException e){
+          } catch (FileNotFoundException e)
+          {
             System.out.println("Arquivo de dados ainda não foi criado.");
-        }
-        catch(IOException e){
-            System.out.println("Problemas ao gravar no arquivo: "+e.toString());
-        }
-    }
-    
-    public static Object load(String caminho){
-        try{
+          } catch (IOException e)
+          {
+            System.out.println("Problemas ao gravar no arquivo: " + e.toString());
+          }
+      }
+
+    public static Object load(String caminho)
+      {
+        try
+          {
             FileInputStream out = new FileInputStream(caminho);
             ObjectInputStream s = new ObjectInputStream(out);
 
@@ -33,17 +39,17 @@ public class Persiste {
             s.close();
 
             return obj;
-        }
-        catch(FileNotFoundException e){
+          } catch (FileNotFoundException e)
+          {
             System.out.println("Problemas ao abrir o arquivo.");
-        }
-        catch(IOException e){
+          } catch (IOException e)
+          {
             System.out.println("Problemas ao gravar no arquivo.");
-        }
-        catch(ClassNotFoundException e){
+          } catch (ClassNotFoundException e)
+          {
             System.out.println("Problemas na conversão da classe.");
-        }
-        
+          }
+
         return null;
-    }
-}
+      }
+  }
