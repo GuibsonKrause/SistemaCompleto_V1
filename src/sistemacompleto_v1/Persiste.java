@@ -14,11 +14,19 @@ public class Persiste
       {
         try
           {
-            FileOutputStream out = new FileOutputStream(caminho);
-            ObjectOutputStream s = new ObjectOutputStream(out);
+//            FileOutputStream out = new FileOutputStream(caminho);
+//            ObjectOutputStream s = new ObjectOutputStream(out);
+//
+//            s.writeObject(obj);
+//            s.close();
 
-            s.writeObject(obj);
-            s.close();
+            FileOutputStream saveFile = new FileOutputStream(caminho);
+            ObjectOutputStream stream = new ObjectOutputStream(saveFile);
+
+            // salva o objeto
+            stream.writeObject(obj);
+
+            stream.close();
           } catch (FileNotFoundException e)
           {
             System.out.println("Arquivo de dados ainda não foi criado.");
@@ -35,7 +43,8 @@ public class Persiste
             FileInputStream out = new FileInputStream(caminho);
             ObjectInputStream s = new ObjectInputStream(out);
 
-            Object obj = s.readObject();
+            Object obj = null;
+            obj = s.readObject();
             s.close();
 
             return obj;

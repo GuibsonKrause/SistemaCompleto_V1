@@ -12,7 +12,7 @@ public class Tarefa implements Serializable
     //Construtor sem parâmetros, mas setando qtdreg
     public Tarefa()
       {
-        this.qtdreg = 0;
+        Tarefa.qtdreg = ++Tarefa.qtdreg;
       }
 
     //Criar gets e sets
@@ -47,7 +47,8 @@ public class Tarefa implements Serializable
       }
 
     //Override toString
-    public String ToString()
+    @Override
+    public String toString()
       {
         return this.nome;
       }

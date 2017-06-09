@@ -1,5 +1,6 @@
 package sistemacompleto_v1;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Model
@@ -7,9 +8,9 @@ public class Model
 
     ArrayList<Tarefa> list;
 
-    public Model()
+    public Model() throws IOException
       {
-        this.list = (ArrayList<Tarefa>) Persiste.load("dados");
+        this.list = (ArrayList<Tarefa>) Persiste.load("dados.txt");
 
         if (this.list == null)
           {
@@ -24,6 +25,7 @@ public class Model
       {
         //Adicionar p na lista e persistir a lista
         this.list.add(p);
+        Persiste.save("dados.txt", p);
       }
 
     public ArrayList<Tarefa> buscarTodos()
@@ -42,7 +44,7 @@ public class Model
             if (this.list.get(i).equals(val))
               {
                 return list.get(i);
-              }            
+              }
           }
         return null;
       }
@@ -73,7 +75,7 @@ public class Model
                 this.list.set(i, t);
               }
           }
-        Persiste.save("dados", this.list);
+        Persiste.save("dados.txt", this.list);
       }
 
     public void remover(Tarefa t)
@@ -86,6 +88,6 @@ public class Model
                 this.list.remove(i);
               }
           }
-        Persiste.save("dados", this.list);
+        Persiste.save("dados.txt", this.list);
       }
   }
